@@ -1,22 +1,37 @@
 import React, { useState } from "react";
+import db from 'db.json';
 
-interface LoginProps {
-  onLogin: (username: string, password: string) => void;
+interface User {
+  username: string;
+  password: string;
 }
 
-const Login = ({ onLogin }: LoginProps) => {
+const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const users: User[] = db.users;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(username, password);
+
+    const foundUser = users.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (foundUser) {
+      alert("Login successful!");
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Invalid username or password.");
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase pb-8 ">
-        United Indian school
+      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase pb-8">
+        United Indian School
       </h1>
       <div className="w-full max-w-sm p-8 space-y-4 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center text-gray-700">
@@ -51,6 +66,10 @@ const Login = ({ onLogin }: LoginProps) => {
               required
             />
           </div>
+
+          {errorMessage && (
+            <div className="text-red-600 text-center mt-2">{errorMessage}</div>
+          )}
 
           <button
             type="submit"
