@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 
-interface LoginProps {
-  onLogin: (username: string, password: string) => void;
-}
-
-const Login = ({ onLogin }: LoginProps) => {
+const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(username, password);
+    console.log("Logging in with:", username, password);
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase pb-8 ">
-        United Indian school
+    <div className="flex flex-col items-center justify-center h-screen bg-grey-100">
+      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase">
+        United Indian School
       </h1>
       <div className="w-full max-w-sm p-8 space-y-4 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center text-gray-700">
@@ -32,7 +36,7 @@ const Login = ({ onLogin }: LoginProps) => {
               type="text"
               id="username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsernameChange}
               className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
@@ -46,7 +50,7 @@ const Login = ({ onLogin }: LoginProps) => {
               type="password"
               id="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
