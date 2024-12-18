@@ -1,12 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { User } from "../type/user";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/users");
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Logging in with:", username, password);
+
+    const foundUser = users.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (foundUser) {
+      alert("Login successful!");
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Invalid username or password.");
+    }
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,8 +45,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-grey-100">
-      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="font-black text-4xl text-gray-900 pb-8 tracking-wide uppercase pb-8">
         United Indian School
       </h1>
       <div className="w-full max-w-sm p-8 space-y-4 bg-white rounded-lg shadow-lg">
@@ -55,6 +82,10 @@ const Login = () => {
               required
             />
           </div>
+
+          {errorMessage && (
+            <div className="text-red-600 text-center pt-2">{errorMessage}</div>
+          )}
 
           <button
             type="submit"
