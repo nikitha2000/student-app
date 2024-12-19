@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Form from "../component/UserForm";
+import Form from "../components/UserForm";
 import { User } from "../type/user";
 
 const SignIn = () => {
