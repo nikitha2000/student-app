@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {User} from "../type/user"
+import { User } from "../type/user";
 
 interface FormProps {
   onSubmit: (user: User) => void;
@@ -8,21 +8,21 @@ interface FormProps {
   buttonText: string;
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit, errorMessage, isSubmitting, buttonText }) => {
+const UserForm = ({ onSubmit, errorMessage, isSubmitting, buttonText }: FormProps) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({username, password});
+    onSubmit({ username, password });
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value); 
+    setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value); 
+    setPassword(e.target.value);
   };
 
   return (
@@ -70,4 +70,4 @@ const Form: React.FC<FormProps> = ({ onSubmit, errorMessage, isSubmitting, butto
   );
 };
 
-export default Form;
+export default UserForm;
