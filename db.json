@@ -39,6 +39,346 @@
       "id": "696c",
       "username": "ann",
       "password": "may"
+    },
+    {
+      "id": "1b58",
+      "username": "sdff",
+      "password": "sdfsd"
     }
+  ],
+  "classes":[
+    {
+      "name": "class A",
+      "teacherName": "Mary",
+      "students": [
+          {
+              "name": "Smith",
+              "id": "101",
+              "marks": [
+                  {
+                      "subject": "English",
+                      "mark": 38
+                  },
+                  {
+                      "subject": "Maths",
+                      "mark": 39
+                  },
+                  {
+                      "subject": "Physics",
+                      "mark": 24
+                  },
+                  {
+                      "subject": "Chemistry",
+                      "mark": 30
+                  },
+                  {
+                      "subject": "Computer",
+                      "mark": 20
+                  }
+              ]
+          },
+          {
+              "name": "Riya",
+              "id": "102",
+              "marks": [
+                  {
+                      "subject": "English",
+                      "mark": 35
+                  },
+                  {
+                      "subject": "Maths",
+                      "mark": 38
+                  },
+                  {
+                      "subject": "Physics",
+                      "mark": 33
+                  },
+                  {
+                      "subject": "Chemistry",
+                      "mark": 34
+                  },
+                  {
+                      "subject": "Computer",
+                      "mark": 30
+                  }
+              ]
+          },
+          {
+              "name": "Ram",
+              "id": "103",
+              "marks": [
+                  {
+                      "subject": "English",
+                      "mark": 12
+                  },
+                  {
+                      "subject": "Maths",
+                      "mark": 49
+                  },
+                  {
+                      "subject": "Physics",
+                      "mark": 18
+                  },
+                  {
+                      "subject": "Chemistry",
+                      "mark": 30
+                  },
+                  {
+                      "subject": "Computer",
+                      "mark": 40
+                  }
+              ]
+          },
+          {
+              "name": "Sara",
+              "id": "104",
+              "marks": [
+                  {
+                      "subject": "English",
+                      "mark": 49
+                  },
+                  {
+                      "subject": "Maths",
+                      "mark": 49
+                  },
+                  {
+                      "subject": "Physics",
+                      "mark": 47
+                  },
+                  {
+                      "subject": "Chemistry",
+                      "mark": 46
+                  },
+                  {
+                      "subject": "Computer",
+                      "mark": 50
+                  }
+              ]
+          }
+      ]
+  },
+  {
+    "name": "class B",
+    "teacherName": "Mathew",
+    "students": [
+        {
+            "name": "Sara",
+            "id": "105",
+            "marks": [
+                {
+                    "subject": "English",
+                    "mark": 24
+                },
+                {
+                    "subject": "Maths",
+                    "mark": 55
+                },
+                {
+                    "subject": "Physics",
+                    "mark": 34
+                },
+                {
+                    "subject": "Chemistry",
+                    "mark": 34
+                },
+                {
+                    "subject": "Computer",
+                    "mark": 65
+                }
+            ]
+        },
+        {
+            "name": "Riyas",
+            "id": "106",
+            "marks": [
+                {
+                    "subject": "English",
+                    "mark":34
+                },
+                {
+                    "subject": "Maths",
+                    "mark": 23
+                },
+                {
+                    "subject": "Physics",
+                    "mark": 89
+                },
+                {
+                    "subject": "Chemistry",
+                    "mark": 34
+                },
+                {
+                    "subject": "Computer",
+                    "mark": 23
+                }
+            ]
+        },
+        {
+            "name": "Ramanathan",
+            "id": "107",
+            "marks": [
+                {
+                    "subject": "English",
+                    "mark": 44
+                },
+                {
+                    "subject": "Maths",
+                    "mark": 23
+                },
+                {
+                    "subject": "Physics",
+                    "mark": 12
+                },
+                {
+                    "subject": "Chemistry",
+                    "mark": 56
+                },
+                {
+                    "subject": "Computer",
+                    "mark": 34
+                }
+            ]
+        },
+        {
+            "name": "Samantha",
+            "id": "108",
+            "marks": [
+                {
+                    "subject": "English",
+                    "mark": 35
+                },
+                {
+                    "subject": "Maths",
+                    "mark": 35
+                },
+                {
+                    "subject": "Physics",
+                    "mark": 24
+                },
+                {
+                    "subject": "Chemistry",
+                    "mark": 67
+                },
+                {
+                    "subject": "Computer",
+                    "mark": 23
+                }
+            ]
+        }
+    ]
+},
+{
+  "name": "class C",
+  "teacherName": "Christina",
+  "students": [
+      {
+          "name": "Smrithi",
+          "id": "109",
+          "marks": [
+              {
+                  "subject": "English",
+                  "mark": 34
+              },
+              {
+                  "subject": "Maths",
+                  "mark": 23
+              },
+              {
+                  "subject": "Physics",
+                  "mark": 66
+              },
+              {
+                  "subject": "Chemistry",
+                  "mark": 32
+              },
+              {
+                  "subject": "Computer",
+                  "mark": 23
+              }
+          ]
+      },
+      {
+          "name": "Littine",
+          "id": "110",
+          "marks": [
+              {
+                  "subject": "English",
+                  "mark": 56
+              },
+              {
+                  "subject": "Maths",
+                  "mark": 34
+              },
+              {
+                  "subject": "Physics",
+                  "mark": 33
+              },
+              {
+                  "subject": "Chemistry",
+                  "mark": 34
+              },
+              {
+                  "subject": "Computer",
+                  "mark": 30
+              }
+          ]
+      },
+      {
+          "name": "Namitha",
+          "id": "111",
+          "marks": [
+              {
+                  "subject": "English",
+                  "mark": 12
+              },
+              {
+                  "subject": "Maths",
+                  "mark": 49
+              },
+              {
+                  "subject": "Physics",
+                  "mark": 18
+              },
+              {
+                  "subject": "Chemistry",
+                  "mark": 30
+              },
+              {
+                  "subject": "Computer",
+                  "mark": 40
+              }
+          ]
+      },
+      {
+          "name": "Zubin",
+          "id": "112",
+          "marks": [
+              {
+                  "subject": "English",
+                  "mark": 49
+              },
+              {
+                  "subject": "Maths",
+                  "mark": 49
+              },
+              {
+                  "subject": "Physics",
+                  "mark": 47
+              },
+              {
+                  "subject": "Chemistry",
+                  "mark": 46
+              },
+              {
+                  "subject": "Computer",
+                  "mark": 50
+              }
+          ]
+      }
+  ]
+}
+
+
+
   ]
 }
