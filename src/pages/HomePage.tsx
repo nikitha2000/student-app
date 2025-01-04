@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import { ClassData } from "../type/user";
 import { fetchClassData } from '../api';
 
@@ -6,6 +7,7 @@ const HomePage = () => {
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
   const [classData, setClassData] = useState<ClassData | null>(null); 
   const [loading, setLoading] = useState<boolean>(false); 
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (selectedClass) {
@@ -30,6 +32,10 @@ const HomePage = () => {
     setClassData(null); 
   };
 
+  const handleTeacherClick = () => {
+    navigate("/teachers"); 
+  }
+
   return (
     <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('/assets/background.webp')` }}>
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
@@ -37,7 +43,7 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-white">Welcome to United Indian School</h2>
           <div className="space-x-4">
             <button className="btn-student text-white">Student</button>
-            <button className="btn-teacher text-white">Teacher</button>
+            <button className="btn-teacher text-white"  onClick={handleTeacherClick}>Teacher</button>
           </div>
         </header>
 
