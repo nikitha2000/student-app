@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
-import { User } from "../type/user";
 import { RoutePaths } from "../route/path";
-import api from "../axios";
+import { User } from "../type/user";
+import  api from "../axios"
 
 const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
