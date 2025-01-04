@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
 import { User } from "../type/user";
 import { fetchUsers } from "../api";
+import { RoutePaths } from "../route/path";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -38,7 +39,7 @@ const Login = () => {
   };
 
   const handleSignIn = () => {
-    navigate("/sign-in");
+    navigate(RoutePaths.SignIn);
   };
 
   return (
