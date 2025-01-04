@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
 import { User } from "../type/user";
@@ -17,7 +16,7 @@ const Login = () => {
       const usersList = await fetchUsers();
       setUsers(usersList);
     };
-    loadUsers()
+    loadUsers();
   }, []);
 
   const handleSubmit = (user: User) => {
