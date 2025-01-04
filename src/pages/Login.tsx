@@ -3,6 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
 import { User } from "../type/user";
+import  api from "../axios"
+import { RoutePaths } from "../route/path";
+
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -13,7 +16,7 @@ const Login = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await api.get("users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -41,7 +44,7 @@ const Login = () => {
   };
 
   const handleSignIn = () => {
-    navigate("/sign-in");
+    navigate(RoutePaths.SignIn);
   };
 
   return (

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
 import { User } from "../type/user";
+import  api from "../axios"
+import { RoutePaths } from "../route/path";
 
 const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -14,8 +16,8 @@ const SignIn = () => {
     setIsSubmitting(true);
 
     try {
-      const existingUserResponse = await axios.get(
-        `http://localhost:3000/users?username=${user.username}`
+      const existingUserResponse = await api.get(
+        `users?username=${user.username}`
       );
       if (existingUserResponse.data.length) {
         setErrorMessage("Username is already taken. Please choose another.");
@@ -23,11 +25,11 @@ const SignIn = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/users", user);
+      const response = await api.post("users", user);
 
       if (response.status === 201) {
         alert("User created successfully!");
-        navigate("/");
+        navigate(RoutePaths.Home);
       }
     } catch (error) {
       setErrorMessage("Error creating user. Please try again.");
