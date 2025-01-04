@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
+import { RoutePaths } from "../route/path";
 import { User } from "../type/user";
 import  api from "../axios"
-import { RoutePaths } from "../route/path";
-
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
