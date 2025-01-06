@@ -8,25 +8,22 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(false); 
 
   useEffect(() => {
-    if (selectedClass) {
-      setLoading(true); 
-
-      fetchClassData(selectedClass) 
-      .then((data) => {
-        setClassData(data); 
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setClassData(null); 
-      })
-      .finally(() => {
-        setLoading(false); 
-      });
-    }
+    const fetchData = async () => {
+      if (selectedClass) {
+        setLoading(true);
+  
+        const data = await fetchClassData(selectedClass);
+        setClassData(data);
+  
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
   }, [selectedClass]);
 
-  const handleClassSelect = (className: string) => {
-    setSelectedClass(className);
+  const handleClassSelect = (e:React.MouseEvent<HTMLButtonElement>) => {
+    setSelectedClass(e.currentTarget.id);
     setClassData(null); 
   };
 
@@ -44,19 +41,22 @@ const HomePage = () => {
         <div className="flex justify-center items-center space-x-8 mt-32">
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            onClick={() => handleClassSelect("Class A")}
+            id="Class A"
+            onClick={(e) => handleClassSelect(e)}
           >
             Class A
           </button>
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            onClick={() => handleClassSelect("Class B")}
+            id="Class B"
+            onClick={(e) => handleClassSelect(e)}
           >
             Class B
           </button>
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            onClick={() => handleClassSelect("Class C")}
+            id="Class C"
+            onClick={(e) => handleClassSelect(e)}
           >
             Class C
           </button>
