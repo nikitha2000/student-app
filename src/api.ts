@@ -16,19 +16,16 @@ export const fetchClassData = async (
   selectedClass: string
 ): Promise<ClassData | null> => {
   try {
-    const response = await api.get("/classes");
+    const response = await api.get("/classes", {
+      params: {
+        name: selectedClass,
+      },
+    });
     const data: ClassData[] = response.data;
-
-    const classData = data.find(
-      (item: ClassData) =>
-        item.name.toLowerCase() === selectedClass.toLowerCase()
-    );
-
-    if (!classData) {
+    if (data.length === 0) {
       return null;
     }
-
-    return classData;
+    return data[0];
   } catch (error) {
     console.error("Error fetching class data:", error);
     return null;

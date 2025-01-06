@@ -5,7 +5,6 @@ import { RoutePaths } from "../route/path";
 import { User } from "../type/user";
 import { fetchUsers } from "../api";
 
-
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [users, setUsers] = useState<User[]>([]);
