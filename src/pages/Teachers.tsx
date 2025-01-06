@@ -6,18 +6,14 @@ const TeacherPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetchTeacherData() 
-      .then((data) => {
-        setTeacherData(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching teacher data:', error);
-        setTeacherData(null);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const fetchData = async () => {
+      setLoading(true);
+      const data = await fetchTeacherData();
+      setTeacherData(data);
+      setLoading(false);
+    };
+  
+    fetchData();
   }, []);
 
   return (
