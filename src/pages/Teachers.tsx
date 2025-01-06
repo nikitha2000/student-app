@@ -7,7 +7,7 @@ const TeacherPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchTeacherData()
+    fetchTeacherData() 
       .then((data) => {
         setTeacherData(data);
       })
