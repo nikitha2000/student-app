@@ -32,6 +32,10 @@ const HomePage = () => {
     navigate("/teachers");
   };
 
+  const handleStudentClick = () => {
+    navigate("/students");
+  }
+
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center"
@@ -43,7 +47,9 @@ const HomePage = () => {
             Welcome to United Indian School
           </h2>
           <div className="space-x-4">
-            <button className="btn-student text-white">Student</button>
+            <button className="btn-student text-white"
+            onClick={handleStudentClick}
+            >Student</button>
             <button
               className="btn-teacher text-white"
               onClick={handleTeacherClick}

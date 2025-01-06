@@ -49,3 +49,20 @@ export const fetchTeacherData = async (): Promise<string[] | null> => {
     return null; 
   }
 };
+
+export const fetchStudentData = async(): Promise<{ className: string, students: string[] }[] | null> => {
+  try {
+    const response = await api.get("/classes");
+    const data: {name:string ,students:{name:string}[]}[] = response.data;
+
+    const studentClassData = data.map((classItem) => ({
+      className: classItem.name,
+      students: classItem.students.map((student) => student.name),
+    }));
+
+    return studentClassData;
+  }catch(error) {
+    console.error("error fetching student name data", error);
+    return null;
+  }
+};
