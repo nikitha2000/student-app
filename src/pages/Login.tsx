@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../components/UserForm";
 import { RoutePaths } from "../route/path";
 import { User } from "../type/user";
-import  api from "../axios"
+import { fetchUsers } from "../api";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -12,15 +12,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await api.get("users");
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
+    const loadUsers = async () => {
+      const usersList = await fetchUsers();
+      setUsers(usersList);
     };
-    fetchUsers();
+    loadUsers();
   }, []);
 
   const handleSubmit = (user: User) => {
@@ -32,7 +28,7 @@ const Login = () => {
     );
 
     if (foundUser) {
-      alert("Login successful!");
+      navigate("/home");
       setErrorMessage("");
     } else {
       setErrorMessage("Invalid username or password.");
@@ -42,6 +38,7 @@ const Login = () => {
   };
 
   const handleSignIn = () => {
+    navigate(RoutePaths.SignIn);
     navigate(RoutePaths.SignIn);
   };
 
