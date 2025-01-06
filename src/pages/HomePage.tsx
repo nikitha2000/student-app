@@ -57,21 +57,21 @@ const HomePage = () => {
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
             id="class A"
-            onClick={(e) => handleClassSelect(e)}
+            onClick={handleClassSelect}
           >
             Class A
           </button>
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
             id="class B"
-            onClick={(e) => handleClassSelect(e)}
+            onClick={handleClassSelect}
           >
             Class B
           </button>
           <button
             className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
             id="class C"
-            onClick={(e) => handleClassSelect(e)}
+            onClick={handleClassSelect}
           >
             Class C
           </button>
