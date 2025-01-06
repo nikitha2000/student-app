@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTeacherData } from '../api'; // Fetching API to get the teacher data
+import { fetchTeacherData } from '../api'; 
 
 const TeacherPage = () => {
   const [teacherData, setTeacherData] = useState<string[] | null>(null);
