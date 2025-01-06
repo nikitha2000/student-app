@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTeacherData } from '../api'; // Fetching API to get the teacher data
+import { fetchTeacherData } from '../api';
 
 const TeacherPage = () => {
   const [teacherData, setTeacherData] = useState<string[] | null>(null);
@@ -7,7 +7,7 @@ const TeacherPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchTeacherData() // Assuming you have this function to fetch teacher data
+    fetchTeacherData()
       .then((data) => {
         setTeacherData(data);
       })
