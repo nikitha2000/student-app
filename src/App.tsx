@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import SignIn from "./pages/SignIn"; 
+import SignIn from "./pages/SignIn";
 import HomePage from "./pages/HomePage";
 import Teachers from "./pages/Teachers"
 import { RoutePaths } from "./route/path"
@@ -19,4 +19,4 @@ const App = () => {
   );
 };
 
-export default App; 
+export default App;
