@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClassData } from "../type/user";
 import { fetchClassData } from "../api";
-import { fetchClassData } from "../api";
 
 const HomePage = () => {
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
@@ -11,9 +10,6 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (selectedClass) {
-        setLoading(true);
     const fetchData = async () => {
       if (selectedClass) {
         setLoading(true);
@@ -30,24 +26,13 @@ const HomePage = () => {
   const handleClassSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     setSelectedClass(e.currentTarget.id);
     setClassData(null);
-  const handleClassSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectedClass(e.currentTarget.id);
-    setClassData(null);
   };
 
   const handleTeacherClick = () => {
     navigate("/teachers");
   };
 
-  const handleStudentClick = () => {
-    navigate("/students");
-  };
-
   return (
-    <div
-      className="relative w-full h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url('/assets/background.webp')` }}
-    >
     <div
       className="relative w-full h-screen bg-cover bg-center"
       style={{ backgroundImage: `url('/assets/background.webp')` }}
@@ -57,16 +42,8 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-white">
             Welcome to United Indian School
           </h2>
-          <h2 className="text-3xl font-semibold text-white">
-            Welcome to United Indian School
-          </h2>
           <div className="space-x-4">
-            <button
-              className="btn-student text-white"
-              onClick={handleStudentClick}
-            >
-              Student
-            </button>
+            <button className="btn-student text-white">Student</button>
             <button
               className="btn-teacher text-white"
               onClick={handleTeacherClick}
@@ -110,9 +87,6 @@ const HomePage = () => {
           <div className="flex justify-center mt-16">
             <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-h-96 overflow-y-auto">
               <h3 className="text-2xl font-bold mb-4">{classData.name}</h3>
-              <h4 className="font-semibold">
-                Teacher: {classData.teacherName}
-              </h4>
               <h4 className="font-semibold">
                 Teacher: {classData.teacherName}
               </h4>
