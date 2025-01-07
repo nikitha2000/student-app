@@ -30,7 +30,7 @@ const TeacherPage = () => {
         ) : (
           <div className="flex justify-center mt-16">
             <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-h-96 overflow-y-auto">
-              {teacherData && teacherData.length > 0 ? (
+              {teacherData?.length ? (
                 <ul>
                   {teacherData.map((teacher, index) => (
                     <li key={index} className="mt-4">
