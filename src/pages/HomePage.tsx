@@ -9,7 +9,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const classes = ["Class A", "Class B", "Class C"];
+  const CLASSES = ["Class A", "Class B", "Class C"];
 
   const buttons = [
     {
@@ -68,7 +68,7 @@ const HomePage = () => {
         </header>
 
         <div className="flex justify-center items-center space-x-8 mt-32">
-          {classes.map((className) => (
+          {CLASSES.map((className) => (
             <button
               key={className}
               className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"

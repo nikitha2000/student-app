@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchTeacherData } from '../api';
+import { fetchTeacherData } from "../api";
 
 const TeacherPage = () => {
-  const [teacherData, setTeacherData] = useState<string[] | null>(null);
+  const [teacherData, setTeacherData] = useState<string[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -12,12 +12,15 @@ const TeacherPage = () => {
       setTeacherData(data);
       setLoading(false);
     };
-  
+
     fetchData();
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('/assets/background.webp')` }}>
+    <div
+      className="relative w-full h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url('/assets/background.webp')` }}
+    >
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
         <header className="flex flex-col items-center w-full py-4 px-8 bg-black bg-opacity-50">
           <h2 className="text-3xl font-semibold text-white">Teachers</h2>
