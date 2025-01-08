@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { fetchStudentData } from '../api';
+import React, { useState, useEffect } from "react";
+import { fetchStudentData } from "../api";
 
 const StudentList = () => {
-  const [selectedClass, setSelectedClass] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [studentData, setStudentData] = useState<{ className: string, students: string[] }[] | null>(null);
+  const [selectedClass, setSelectedClass] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [studentData, setStudentData] = useState<
+    { className: string; students: string[] }[] | null
+  >([]);
   const [filteredStudents, setFilteredStudents] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,12 +24,11 @@ const StudentList = () => {
       });
   }, []);
 
-
   useEffect(() => {
     if (studentData) {
-      let filtered:string[]= [];
+      let filtered: string[] = [];
 
-      if (selectedClass === 'all') {
+      if (selectedClass === "all") {
         studentData.forEach((classItem) => {
           const classFilteredStudents = classItem.students.filter((student) =>
             student.toLowerCase().includes(searchQuery.toLowerCase())
@@ -35,7 +36,9 @@ const StudentList = () => {
           filtered = [...filtered, ...classFilteredStudents];
         });
       } else {
-        const selectedClassData = studentData.find((classItem) => classItem.className === selectedClass);
+        const selectedClassData = studentData.find(
+          (classItem) => classItem.className === selectedClass
+        );
         if (selectedClassData) {
           filtered = selectedClassData.students.filter((student) =>
             student.toLowerCase().includes(searchQuery.toLowerCase())
@@ -48,7 +51,10 @@ const StudentList = () => {
   }, [selectedClass, searchQuery, studentData]);
 
   return (
-    <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('/assets/background.webp')` }}>
+    <div
+      className="relative w-full h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url('/assets/background.webp')` }}
+    >
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
         <header className="flex flex-col items-center w-full py-4 px-8 bg-black bg-opacity-50">
           <h2 className="text-3xl font-semibold text-white">Student List</h2>
@@ -61,9 +67,13 @@ const StudentList = () => {
         ) : (
           <div className="flex justify-center mt-16">
             <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-h-96 overflow-y-auto">
-
               <div className="mb-4">
-                <label htmlFor="class-select" className="block text-sm font-semibold">Select Class:</label>
+                <label
+                  htmlFor="class-select"
+                  className="block text-sm font-semibold"
+                >
+                  Select Class:
+                </label>
                 <select
                   id="class-select"
                   value={selectedClass}
@@ -71,14 +81,25 @@ const StudentList = () => {
                   className="w-full p-2 border border-gray-300 rounded-md"
                 >
                   <option value="all">All Classes</option>
-                  {studentData && studentData.map((classItem) => (
-                    <option key={classItem.className} value={classItem.className}>{classItem.className}</option>
-                  ))}
+                  {studentData &&
+                    studentData.map((classItem) => (
+                      <option
+                        key={classItem.className}
+                        value={classItem.className}
+                      >
+                        {classItem.className}
+                      </option>
+                    ))}
                 </select>
               </div>
 
               <div className="mb-4">
-                <label htmlFor="search-bar" className="block text-sm font-semibold">Search by Name:</label>
+                <label
+                  htmlFor="search-bar"
+                  className="block text-sm font-semibold"
+                >
+                  Search by Name:
+                </label>
                 <input
                   id="search-bar"
                   type="text"
