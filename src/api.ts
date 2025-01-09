@@ -43,8 +43,10 @@ export const fetchTeacherData = async (): Promise<string[] | null> => {
     const teacherNames = data.map((classItem) => classItem.teacherName);
 
     return teacherNames;
+    return teacherNames;
   } catch (error) {
     console.error("Error fetching teacher data:", error);
+    return null;
     return null;
   }
 };
