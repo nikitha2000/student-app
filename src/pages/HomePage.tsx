@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ClassData } from "../type/user";
 import { fetchClassData } from "../api";
 
@@ -6,6 +7,22 @@ const HomePage = () => {
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
   const [classData, setClassData] = useState<ClassData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const CLASSES = ["Class A", "Class B", "Class C"];
+
+  const buttons = [
+    {
+      label: "Student",
+      className: "btn-student text-white",
+      onClick: () => {},
+    },
+    {
+      label: "Teacher",
+      className: "btn-teacher text-white",
+      onClick: () => navigate("/teachers"),
+    },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +31,6 @@ const HomePage = () => {
 
         const data = await fetchClassData(selectedClass);
         setClassData(data);
-
         setLoading(false);
       }
     };
@@ -37,34 +53,31 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-white">
             Welcome to United Indian School
           </h2>
+
           <div className="space-x-4">
-            <button className="btn-student text-white">Student</button>
-            <button className="btn-teacher text-white">Teacher</button>
+            {buttons.map((button, index) => (
+              <button
+                key={index}
+                className={button.className}
+                onClick={button.onClick}
+              >
+                {button.label}
+              </button>
+            ))}
           </div>
         </header>
 
         <div className="flex justify-center items-center space-x-8 mt-32">
-          <button
-            className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            id="Class A"
-            onClick={handleClassSelect}
-          >
-            Class A
-          </button>
-          <button
-            className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            id="Class B"
-            onClick={handleClassSelect}
-          >
-            Class B
-          </button>
-          <button
-            className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
-            id="Class C"
-            onClick={handleClassSelect}
-          >
-            Class C
-          </button>
+          {CLASSES.map((className) => (
+            <button
+              key={className}
+              className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
+              id={className}
+              onClick={handleClassSelect}
+            >
+              {className}
+            </button>
+          ))}
         </div>
 
         {loading && (
