@@ -11,17 +11,13 @@ const StudentList = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetchStudentData()
-      .then((data) => {
-        setStudentData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching student data:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const fetchData = async () => {
+      setLoading(true);
+      const data = await fetchStudentData();
+      setStudentData(data);
+      setLoading(false);
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -50,6 +46,14 @@ const StudentList = () => {
     }
   }, [selectedClass, searchQuery, studentData]);
 
+  const handleClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedClass(event.target.value);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center"
@@ -77,7 +81,7 @@ const StudentList = () => {
                 <select
                   id="class-select"
                   value={selectedClass}
-                  onChange={(e) => setSelectedClass(e.target.value)}
+                  onChange={handleClassChange}
                   className="w-full p-2 border border-gray-300 rounded-md"
                 >
                   <option value="all">All Classes</option>
@@ -104,14 +108,14 @@ const StudentList = () => {
                   id="search-bar"
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={handleSearchChange}
                   className="w-full p-2 border border-gray-300 rounded-md"
                   placeholder="Enter student name"
                 />
               </div>
 
               <h3 className="text-xl font-semibold mb-2">Filtered Students</h3>
-              {filteredStudents.length > 0 ? (
+              {filteredStudents.length ? (
                 <div className="border border-gray-300 rounded-lg p-4 mt-4 max-h-64 overflow-y-auto">
                   <ul>
                     {filteredStudents.map((student, index) => (

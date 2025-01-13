@@ -56,8 +56,7 @@ export const fetchStudentData = async (): Promise<
 > => {
   try {
     const response = await api.get("/classes");
-    const data: { name: string; students: { name: string }[] }[] =
-      response.data;
+    const data: ClassData[] = response.data;
 
     const studentClassData = data.map((classItem) => ({
       className: classItem.name,
