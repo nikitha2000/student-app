@@ -19,3 +19,8 @@ export interface ClassData {
   teacherName: string;
   students: Student[];
 }
+
+export interface StudentClassData {
+  className: string;
+  students: string[];
+}

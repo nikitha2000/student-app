@@ -1,4 +1,4 @@
-import { ClassData } from "./type/user";
+import { ClassData, StudentClassData } from "./type/user";
 import { User } from "./type/user";
 import api from "./axios";
 
@@ -24,7 +24,7 @@ export const fetchClassData = async (
 
     const data: ClassData[] = response.data;
 
-    if (data.length === 0) {
+    if (!data.length) {
       return null;
     }
 
@@ -41,18 +41,15 @@ export const fetchTeacherData = async (): Promise<string[] | null> => {
     const data: { teacherName: string }[] = response.data;
 
     const teacherNames = data.map((classItem) => classItem.teacherName);
-
-    return teacherNames;
     return teacherNames;
   } catch (error) {
     console.error("Error fetching teacher data:", error);
-    return null;
     return null;
   }
 };
 
 export const fetchStudentData = async (): Promise<
-  { className: string; students: string[] }[] | null
+  StudentClassData[] | null
 > => {
   try {
     const response = await api.get("/classes");

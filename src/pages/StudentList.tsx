@@ -13,8 +13,8 @@ const StudentList = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await fetchStudentData();
-      setStudentData(data);
+      const students = await fetchStudentData();
+      setStudentData(students);
       setLoading(false);
     };
     fetchData();
