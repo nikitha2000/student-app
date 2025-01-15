@@ -9,13 +9,13 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const CLASSES = ["Class A", "Class B", "Class C"];
+  const CLASSES = ["class A", "class B", "class C"];
 
   const buttons = [
     {
       label: "Student",
       className: "btn-student text-white",
-      onClick: () => {},
+      onClick: () => navigate("/students"),
     },
     {
       label: "Teacher",
