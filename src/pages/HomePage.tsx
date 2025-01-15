@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ClassData } from "../type/user";
-import { fetchClassData } from "../api";
+import { fetchClassDataAction, selectClass } from "../redux/classActions";
+import { RootState, AppDispatch } from "../redux/store";
 
 const HomePage = () => {
-  const [selectedClass, setSelectedClass] = useState<string | null>(null);
-  const [classData, setClassData] = useState<ClassData | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+
+  const selectedClass = useSelector((state: RootState) => state.selectedClass);
+  const classData = useSelector((state: RootState) => state.classData);
+  const loading = useSelector((state: RootState) => state.loading);
 
   const CLASSES = ["class A", "class B", "class C"];
 
@@ -25,22 +28,14 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (selectedClass) {
-        setLoading(true);
-
-        const data = await fetchClassData(selectedClass);
-        setClassData(data);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [selectedClass]);
+    if (selectedClass) {
+      dispatch(fetchClassDataAction(selectedClass));
+    }
+  }, [selectedClass, dispatch]);
 
   const handleClassSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectedClass(e.currentTarget.id);
-    setClassData(null);
+    const className = e.currentTarget.id;
+    dispatch(selectClass(className));
   };
 
   return (
