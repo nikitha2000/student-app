@@ -1,23 +1,15 @@
-import {
-  SET_CLASS_DATA,
-  SET_LOADING,
-  SET_STUDENT_DATA,
-  SELECT_CLASS,
-  selectClass,
-} from "./classActions";
-import { ClassData, StudentClassData } from "../type/user";
+import { SET_CLASS_DATA, SET_LOADING, SELECT_CLASS } from "./classActions";
+import { ClassData } from "../type/user";
 
 export interface ClassState {
   selectedClass: string | null;
   classData: ClassData | null;
-  studentData: StudentClassData[];
   loading: boolean;
 }
 
 const initialState: ClassState = {
   selectedClass: null,
   classData: null,
-  studentData: [],
   loading: false,
 };
 
@@ -38,11 +30,6 @@ const classReducer = (state = initialState, action: any): ClassState => {
       return {
         ...state,
         loading: action.payload,
-      };
-    case SET_STUDENT_DATA:
-      return {
-        ...state,
-        studentData: action.payload,
       };
     default:
       return state;
