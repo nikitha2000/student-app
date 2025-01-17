@@ -1,5 +1,5 @@
-import { SET_CLASS_DATA, SET_LOADING, SELECT_CLASS } from "./classActions";
 import { ClassData } from "../type/user";
+import { ActionTypes } from "./actionTypes";
 
 export interface ClassState {
   selectedClass: string | null;
@@ -15,18 +15,18 @@ const initialState: ClassState = {
 
 const classReducer = (state = initialState, action: any): ClassState => {
   switch (action.type) {
-    case SELECT_CLASS:
+    case ActionTypes.SELECT_CLASS:
       return {
         ...state,
         selectedClass: action.payload,
         classData: null,
       };
-    case SET_CLASS_DATA:
+    case ActionTypes.SET_CLASS_DATA:
       return {
         ...state,
         classData: action.payload,
       };
-    case SET_LOADING:
+    case ActionTypes.SET_LOADING:
       return {
         ...state,
         loading: action.payload,

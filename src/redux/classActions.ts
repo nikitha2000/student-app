@@ -1,25 +1,23 @@
 import { ThunkAction } from "redux-thunk";
 import { Action, Dispatch } from "redux";
-import { RootState } from "./store";
-import { fetchClassData } from "../api";
-import { ClassData } from "../type/user";
 
-export const SET_CLASS_DATA = "SET_CLASS_DATA";
-export const SET_LOADING = "SET_LOADING";
-export const SELECT_CLASS = "SELECT_CLASS";
+import { ClassData } from "../type/user";
+import { fetchClassData } from "../api";
+import { RootState } from "./store";
+import { ActionTypes } from "./actionTypes";
 
 export const selectClass = (className: string) => ({
-  type: SELECT_CLASS,
+  type: ActionTypes.SELECT_CLASS,
   payload: className,
 });
 
 export const setClassData = (data: ClassData | null) => ({
-  type: SET_CLASS_DATA,
+  type: ActionTypes.SET_CLASS_DATA,
   payload: data,
 });
 
 export const setLoading = (loading: boolean) => ({
-  type: SET_LOADING,
+  type: ActionTypes.SET_LOADING,
   payload: loading,
 });
 
