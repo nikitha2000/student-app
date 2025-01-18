@@ -10,7 +10,7 @@ const HomePage = () => {
 
   const selectedClass = useSelector((state: RootState) => state.selectedClass);
   const classData = useSelector((state: RootState) => state.classData);
-  const loading = useSelector((state: RootState) => state.loading);
+  const classLoading = useSelector((state: RootState) => state.loading);
 
   const CLASSES = ["class A", "class B", "class C"];
 
@@ -75,13 +75,13 @@ const HomePage = () => {
           ))}
         </div>
 
-        {loading && (
+        {classLoading && (
           <div className="flex justify-center items-center mt-8">
             <span className="text-white">Loading...</span>
           </div>
         )}
 
-        {classData && !loading && (
+        {classData && !classLoading && (
           <div className="flex justify-center mt-16">
             <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-h-96 overflow-y-auto">
               <h3 className="text-2xl font-bold mb-4">{classData.name}</h3>
