@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchClassName } from "../api";
 import { fetchClassDataAction, selectClass } from "../redux/classActions";
 import { RootState, AppDispatch } from "../redux/store";
 
 const HomePage = () => {
+  const [classNames, setclassNames] = useState<string[] | null>([]);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   const selectedClass = useSelector((state: RootState) => state.selectedClass);
   const classData = useSelector((state: RootState) => state.classData);
   const classLoading = useSelector((state: RootState) => state.loading);
-
-  const CLASSES = ["class A", "class B", "class C"];
 
   const buttons = [
     {
@@ -26,6 +26,15 @@ const HomePage = () => {
       onClick: () => navigate("/teachers"),
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchClassName();
+      setclassNames(data);
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (selectedClass) {
@@ -63,7 +72,7 @@ const HomePage = () => {
         </header>
 
         <div className="flex justify-center items-center space-x-8 mt-32">
-          {CLASSES.map((className) => (
+          {classNames?.map((className) => (
             <button
               key={className}
               className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
