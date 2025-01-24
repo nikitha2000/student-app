@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ClassData } from "../type/user";
-import { fetchClassData } from "../api";
+import { fetchClassName } from "../api";
+import { fetchClassDataAction, selectClass } from "../redux/classActions";
+import { RootState, AppDispatch } from "../redux/store";
 
 const HomePage = () => {
-  const [selectedClass, setSelectedClass] = useState<string | null>(null);
-  const [classData, setClassData] = useState<ClassData | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [classNames, setclassNames] = useState<string[] | null>([]);
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  const CLASSES = ["class A", "class B", "class C"];
+  const selectedClass = useSelector((state: RootState) => state.selectedClass);
+  const classData = useSelector((state: RootState) => state.classData);
+  const classLoading = useSelector((state: RootState) => state.loading);
 
   const buttons = [
     {
@@ -26,21 +29,22 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (selectedClass) {
-        setLoading(true);
-
-        const data = await fetchClassData(selectedClass);
-        setClassData(data);
-        setLoading(false);
-      }
+      const data = await fetchClassName();
+      setclassNames(data);
     };
 
     fetchData();
-  }, [selectedClass]);
+  }, []);
+
+  useEffect(() => {
+    if (selectedClass) {
+      dispatch(fetchClassDataAction(selectedClass));
+    }
+  }, [selectedClass, dispatch]);
 
   const handleClassSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectedClass(e.currentTarget.id);
-    setClassData(null);
+    const className = e.currentTarget.id;
+    dispatch(selectClass(className));
   };
 
   return (
@@ -68,7 +72,7 @@ const HomePage = () => {
         </header>
 
         <div className="flex justify-center items-center space-x-8 mt-32">
-          {CLASSES.map((className) => (
+          {classNames?.map((className) => (
             <button
               key={className}
               className="bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300"
@@ -80,13 +84,13 @@ const HomePage = () => {
           ))}
         </div>
 
-        {loading && (
+        {classLoading && (
           <div className="flex justify-center items-center mt-8">
             <span className="text-white">Loading...</span>
           </div>
         )}
 
-        {classData && !loading && (
+        {classData && !classLoading && (
           <div className="flex justify-center mt-16">
             <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-h-96 overflow-y-auto">
               <h3 className="text-2xl font-bold mb-4">{classData.name}</h3>

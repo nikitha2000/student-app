@@ -66,3 +66,15 @@ export const fetchStudentData = async (): Promise<
     return null;
   }
 };
+
+export const fetchClassName = async (): Promise<string[] | null> => {
+  try {
+    const response = await api.get("/classes");
+    const data: { name: string }[] = response.data;
+    const classNames = data.map((classItem) => classItem.name);
+    return classNames;
+  } catch (error) {
+    console.error("Error fetching class name data:", error);
+    return null;
+  }
+};
